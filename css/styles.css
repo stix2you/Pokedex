@@ -1,0 +1,73 @@
+
+:root {
+  --first-background-color: #000;
+  --second-background-color: rgb(63, 19, 59);
+  --heading-text-color: rgb(199, 0, 0);
+  --body-text-color: #6ba9ff;
+  --button-background: #1d778d;
+  --button-text: white;
+  --button-border-color: #6ed3f0;
+  --nav-text-unvisited: #6ba9ff;
+  --nav-text-visited: #6ba9ff;
+  --nav-text-hover: rgb(192, 2, 192);
+  --nav-text-active: rgb(192, 2, 192);
+  --animation-color-one: red;
+  --animation-color-two: orange;
+  --animation-color-three: yellow;
+  --animation-color-four: green;
+  --animation-color-five: blue;
+  --animation-color-six: purple;
+  --font-size-very-large: 36px;
+  --font-size-large: 30px;
+  --font-size-medium: 18px;
+  --font-size-small: 10px;
+  --font-weight-bold: 700;
+  --font-weight-normal: 200;
+}
+
+/* set style for body */
+body {
+  background-color: var(--first-background-color);
+  font-family: 'Young Serif', serif;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-large);
+  line-height: 1.5;
+  color: var(--body-text-color);
+}
+
+h1 {
+  font-size: var(--font-size-very-large);
+  font-weight: var(--font-weight-bold);
+  color: var(--heading-text-color);
+}
+
+h2 {
+  font-size: var(--font-size-large);
+  font-weight: var(--font-weight-normal);
+  color: var(--heading-text-color);
+}
+
+h3 {
+  font-size: var(--font-size-large);
+  font-weight: var(--font-weight-normal);
+  color: var(--body-text-color);
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  justify-content: flex-start;
+}
+
+p {
+  font-size: var(--font-size-medium);
+  font-weight: var(--font-weight-normal);
+}
+
+li {
+  margin: 20px;
+}
+
+a {
+  color: var(--body-text-color);
+}

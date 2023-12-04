@@ -1,3 +1,4 @@
+// Define and fill Pokemon List Array
 let pokemonList = [
     { name: 'Bulbasaur', height: 0.7, types: ['grass', 'poison'] },
     { name: 'Ivysaur', height: 1.0, types: ['grass', 'poison'] },
@@ -11,7 +12,11 @@ let pokemonList = [
     { name: 'Caterpie', height: 0.3, types: ['bug'] },
 ]
 
-// Loop to display names and heights next to each name
+// Loop to display names and heights next to each name, include "wow" tag if height over 1.0
 for (let i = 0; i < pokemonList.length; i++) {
-    document.write(pokemonList[i].name + " (height: " + pokemonList[i].height + "), ");
+    document.write(pokemonList[i].name + " (height: " + pokemonList[i].height + ")");
+    if (pokemonList[i].height >= 1.0) {
+        document.write(" -- Wow that's big!")
+    };
+    document.write("<br>");
   }
