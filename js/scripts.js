@@ -11,6 +11,7 @@ let pokemonList = [
     { name: 'Caterpie', height: 0.3, types: ['bug'] },
 ]
 
+// Loop to display names and heights next to each name
 for (let i = 0; i < pokemonList.length; i++) {
-    document.write(pokemonList[i].name + ", height: " + pokemonList[i].height + " --- ");
+    document.write(pokemonList[i].name + " (height: " + pokemonList[i].height + "), ");
   }
