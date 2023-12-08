@@ -29,6 +29,20 @@ let pokemonRepository = (function () {
     };
 })();
 
+
+// document.write(pokemonRepository.getAll());
+
+
+pokemonRepository.getAll().forEach(function(pokemonRepository) {
+    document.write(pokemonRepository.name + " (height: " + pokemonRepository.height + ")");
+    if (pokemonRepository.height >= 1.0) {
+        document.write(" -- Wow that's big!")
+    };
+    document.write("<br>");
+  });
+
+
+/*
 // ForEach loop to display names and heights next to each name, include "wow" tag if height over 1.0
 
   pokemonList.forEach(function(pokemonList) {
@@ -38,3 +52,4 @@ let pokemonRepository = (function () {
     };
     document.write("<br>");
   });
+  */
