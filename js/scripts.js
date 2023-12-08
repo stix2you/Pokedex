@@ -20,4 +20,4 @@ let pokemonList = [
         document.write(" -- Wow that's big!")
     };
     document.write("<br>");
-  }
+  });
