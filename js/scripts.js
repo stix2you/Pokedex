@@ -15,55 +15,68 @@ let pokemonRepository = (function () {
     
     //separately defined functions for 'add' and 'getAll'
     function add(pokemon) {
+    // Check if the input is an object
+        if (typeof pokemon === "object") {
+            // Check if the object has all required properties
+            const requiredProperties = ["name", "height", "types"];
+            const hasRequiredProperties = requiredProperties.every((prop) => Object.keys(pokemon).includes(prop)
+        );
 
-        // let isValid = Object.keys(pokemon);
-        // console.log(isValid);
-        // if  (isValid = ["name:", "height:", "types:"]) {
-        //     pokemonList.push(pokemon);
-        //   } else {
-        //     console.error("Did not add item: " + pokemon + " ....Items must be objects to add to repository");
-        //   };
-        
-        //Object.keys(pokemon).forEach(function(property) { console.log(pokemon[property]); } );
-
-        // if-else to check passed data is an object, ELSE refuse to add and error msg to console
-        if (typeof pokemon === 'object')  {
+        if (hasRequiredProperties) {
             pokemonList.push(pokemon);
-          } else {
-            console.error("Did not add item: " + pokemon + " ....Items must be objects to add to repository");
-          };
+            console.log("Item added:", pokemon);
+        } else {
+            console.error(
+            "Did not add item: ",
+            pokemon,
+            " ...Items must have properties: name, height, and types."
+            );
+        }
+        } else {
+            console.error(
+            "Did not add item: ",
+            pokemon,
+            " ...Items must be objects to add to the repository."
+        );
+        }
     }
-
 
     function getAll() {
         return pokemonList;
     }
 
-    // function getSpecific(specificPokemon) {
-    //     let specific = pokemonList.filter(iteration => iteration === specificPokemon);
-    //     return specific;
-    // }
+    function getSpecific(specificPokemon) {
+        // ADAM NOTE: access the pokemon via name by using dot notation
+        let specific = pokemonList.filter(
+        (iteration) => iteration.name === specificPokemon
+        );
+        return specific[0];
+    }
 
     return {
-        add: add,  // key and value are same
-        getAll: getAll,    // key and value are same
-        // getSpecific: getSpecific   // key and value are same
+        add: add, // key and value are same
+        getAll: getAll, // key and value are same
+        getSpecific: getSpecific // key and value are same
     };
 })();
 
 // Test adding an object and a non-object variable
-let newPokemonObject = { name: 'Metapod', height: 0.7, types: ['bug'] };
+let newPokemonObject = { name: "Metapod", height: 0.7, types: ["bug"] };
 pokemonRepository.add(newPokemonObject);
 
-let newPokemonString = 'STRING name: Metapod, height: 0.7, types: [bug]';
+let newPokemonString = "STRING name: Metapod, height: 0.7, types: [bug]";
 pokemonRepository.add(newPokemonString);
+
+console.log(pokemonRepository.getSpecific("Bulbasaur"));
 
 
 // loop to display pokemonList array within the pokemonRepository
-pokemonRepository.getAll().forEach(function(pokemonRepository) {
-    document.write(pokemonRepository.name + " (height: " + pokemonRepository.height + ")");
-    if (pokemonRepository.height >= 1.0) {
-        document.write(" -- Wow that's big!")
-    };
-    document.write("<br>");
+pokemonRepository.getAll().forEach(function (pokemonRepository) {
+  document.write(
+    pokemonRepository.name + " (height: " + pokemonRepository.height + ")"
+  );
+  if (pokemonRepository.height >= 1.0) {
+    document.write(" -- Wow that's big!");
+  }
+  document.write("<br>");
 });
