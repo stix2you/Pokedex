@@ -52,31 +52,25 @@ let pokemonRepository = (function () {
         );
         return specific[0];
     }
+    function addListItem(pokemon) {
+        let theList = document.querySelector('.pokemon-list');    // create a variable then assign it the ul element you just added to your “index.html” file
+        let listItem = document.createElement('li');    // Create an li element (e.g., let listItem = document.createElement('li')).
+        let button = document.createElement('button');  // Create a button element (e.g., let button = document.createElement('button'))
+        button.innerText = pokemon.name;      // set its innerText to be the Pokémon's name (remember that forEach returns a Pokémon in each iteration).
+        button.classList.add('pokeListButton');           // Add a class to the button using the classList.add method (button.classList.add(...)). 
+
+        listItem.appendChild(button);   // append the button to the list item as its child.
+        theList.appendChild(listItem);  // append the list item to the unordered list as its child.
+    }
 
     return {
         add: add, // key and value are same
         getAll: getAll, // key and value are same
-        getSpecific: getSpecific // key and value are same
+        getSpecific: getSpecific, // key and value are same
+        addListItem: addListItem  
     };
 })();
 
-// Test adding an object and a non-object variable
-let newPokemonObject = { name: "Metapod", height: 0.7, types: ["bug"] };
-pokemonRepository.add(newPokemonObject);
-
-let newPokemonString = "STRING name: Metapod, height: 0.7, types: [bug]";
-pokemonRepository.add(newPokemonString);
-
-console.log(pokemonRepository.getSpecific("Bulbasaur"));
-
-
-// loop to display pokemonList array within the pokemonRepository
-pokemonRepository.getAll().forEach(function (pokemonRepository) {
-  document.write(
-    pokemonRepository.name + " (height: " + pokemonRepository.height + ")"
-  );
-  if (pokemonRepository.height >= 1.0) {
-    document.write(" -- Wow that's big!");
-  }
-  document.write("<br>");
+pokemonRepository.getAll().forEach(function (pokemon) {
+    pokemonRepository.addListItem(pokemon);
 });

@@ -17,7 +17,7 @@
   --animation-color-four: green;
   --animation-color-five: blue;
   --animation-color-six: purple;
-  --font-size-very-large: 36px;
+  --font-size-very-large: 48px;
   --font-size-large: 30px;
   --font-size-medium: 18px;
   --font-size-small: 10px;
@@ -39,6 +39,7 @@ h1 {
   font-size: var(--font-size-very-large);
   font-weight: var(--font-weight-bold);
   color: var(--heading-text-color);
+  text-align: center;
 }
 
 h2 {
@@ -71,3 +72,108 @@ li {
 a {
   color: var(--body-text-color);
 }
+
+
+pokeListButton {
+  /* overwrites browser defaults and resets the border */
+  border: none;
+  display: flex;
+  justify-content: center;
+
+  /* takes the font from the outer container */
+  font-family: inherit;
+  font-size: var(--font-size-medium);
+
+  /* styles the button */
+
+  background-color: var(--button-background);
+  color: var(--button-text);
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 3px;
+
+  /* width of the border, type, color */
+  border-bottom: 2px solid var(--button-border-color);
+  transition-duration: 0.2s;
+  transition-property: opacity;
+}
+
+pokeListButton:hover,
+pokeListButton:focus,
+.pokeListButton:hover,
+.pokeListButton:focus {
+  /* lets the mouse appear as a hand when hovering over the button */
+  cursor: pointer;
+
+  /* reduces the opacity of the button to 80% */
+  opacity: 0.8;
+}
+
+@media all and (max-width: 500px) {
+    .pokemon-list {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media all and (min-width: 500px) and (max-width: 750px) {
+    .pokemon-list {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  @media all and (max-width: 750px) {
+    .pokemon-list {
+      grid-gap: 10px;
+    }
+  
+    .pokemon-list__item:last-child {
+      grid-column: auto / auto;
+      grid-row: auto / auto;
+    }
+  
+    h1 {
+      font-size: 22px;
+    }
+  
+    h2 {
+      font-size: 16px;
+    }
+  
+    p {
+      font-size: 16px;
+    }
+  
+    a {
+      font-size: 16px;
+    }
+  }
+  
+  @media all and (max-width: 900px) {
+    .pokemon-list {
+      display: block;
+      margin-left: 1px;
+    }
+  
+    .pokemon-list__item {
+      margin: 0 20px;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 2;
+      padding: 2px;
+    }
+  }
+  
+  @media all and (max-width: 1800px) {
+    .pokemon-list {
+      display: block;
+      margin-left: 1px;
+    }
+  
+    .pokemon-list__item {
+      margin: 0 20px;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 2;
+      padding: 2px;
+    }
+  }
