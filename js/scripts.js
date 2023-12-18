@@ -61,6 +61,16 @@ let pokemonRepository = (function () {
 
         listItem.appendChild(button);   // append the button to the list item as its child.
         theList.appendChild(listItem);  // append the list item to the unordered list as its child.
+
+        button.addEventListener('click', function () {
+            showDetails(pokemon);
+        });
+    }
+
+    // Create a new function either above or below addListItem() and call it showDetails(). 
+    // The function should expect one parameter: pokemon. Inside the function, run a console.log() on the Pokémon object that’s passed as the parameter
+    function showDetails(pokemon) {
+        console.log(pokemon);  
     }
 
     return {
@@ -68,7 +78,7 @@ let pokemonRepository = (function () {
         getAll: getAll, // key and value are same
         getSpecific: getSpecific, // key and value are same
         addListItem: addListItem  
-    };
+    }
 })();
 
 pokemonRepository.getAll().forEach(function (pokemon) {
