@@ -1,43 +1,18 @@
 //  Define new variable pokemonRepository   and   assign to Pokemon List Array
 let pokemonRepository = (function () {
-    let pokemonList = [
-        { name: 'Bulbasaur', height: 0.7, types: ['grass', 'poison'] },
-        { name: 'Ivysaur', height: 1.0, types: ['grass', 'poison'] },
-        { name: 'Venusaur', height: 2.0, types: ['grass', 'poison'] },
-        { name: 'Charmander', height: 0.6, types: ['fire'] },
-        { name: 'Charmeleon', height: 1.1, types: ['fire'] },
-        { name: 'Charizard', height: 1.7, types: ['fire', 'flying'] },
-        { name: 'Squirtle', height: 0.5, types: ['water'] },
-        { name: 'Wartortle', height: 1.0, types: ['water'] },
-        { name: 'Blastoise', height: 1.6, types: ['water'] },
-        { name: 'Caterpie', height: 0.3, types: ['bug'] },
-    ];
-    
+    let pokemonList = [];
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+      
     //separately defined functions for 'add' and 'getAll'
     function add(pokemon) {
-    // Check if the input is an object
-        if (typeof pokemon === "object") {
-            // Check if the object has all required properties
-            const requiredProperties = ["name", "height", "types"];
-            const hasRequiredProperties = requiredProperties.every((prop) => Object.keys(pokemon).includes(prop)
-        );
-
-        if (hasRequiredProperties) {
+        if (typeof pokemon === "object"  &&
+            "name" in pokemon  &&
+            "detailsUrl" in pokemon
+        ) { 
             pokemonList.push(pokemon);
             console.log("Item added:", pokemon);
         } else {
-            console.error(
-            "Did not add item: ",
-            pokemon,
-            " ...Items must have properties: name, height, and types."
-            );
-        }
-        } else {
-            console.error(
-            "Did not add item: ",
-            pokemon,
-            " ...Items must be objects to add to the repository."
-        );
+            console.error("Did not add item: ", pokemon, " ...Items must have properties: name, height, and types.");
         }
     }
 
@@ -46,7 +21,6 @@ let pokemonRepository = (function () {
     }
 
     function getSpecific(specificPokemon) {
-        // ADAM NOTE: access the pokemon via name by using dot notation
         let specific = pokemonList.filter(
         (iteration) => iteration.name === specificPokemon
         );
@@ -66,27 +40,60 @@ let pokemonRepository = (function () {
         addEventListenerToButton(button, pokemon);
     }
 
-    
-    // Separate event listener function for pokemon button, pass button and pokemon, send info to showDetails function
-    function addEventListenerToButton(button, pokemon) {
+   function addEventListenerToButton(button, pokemon) {  // Separate event listener function for pokemon button
         button.addEventListener('click', function () {
             showDetails(pokemon);
         });
     }
 
-    // Function to display details of desired pokemon... for now, just send to console
-    function showDetails(pokemon) {
-        console.log(pokemon);  
+    function loadList() {
+        return fetch(apiUrl).then(function (response) {
+            return response.json();
+        }).then(function (json) {
+            json.results.forEach(function (item) {
+                let pokemon = {
+                name: item.name,
+                detailsUrl: item.url
+                };
+            add(pokemon);
+            });
+        }).catch(function (e) {
+            console.error(e);
+        })
+    }
+    
+    function loadDetails(item) {
+        let url = item.detailsUrl;
+        return fetch(url).then(function (response) {
+          return response.json();
+        }).then(function (details) {    // Now we add the details to the item
+          item.imageUrl = details.sprites.front_default;
+          item.height = details.height;
+          item.types = details.types;
+        }).catch(function (e) {
+          console.error(e);
+        });
+    }
+
+    function showDetails(pokemon) {   // Function to display details of desired pokemon
+        loadDetails(pokemon).then(function () {
+            console.log(pokemon);
+        }); 
     }
 
     return {
         add: add, // key and value are same
         getAll: getAll, // key and value are same
         getSpecific: getSpecific, // key and value are same
-        addListItem: addListItem  
-    }
+        addListItem: addListItem,  
+        loadList: loadList,
+        loadDetails: loadDetails,
+    };
 })();
 
-pokemonRepository.getAll().forEach(function (pokemon) {
-    pokemonRepository.addListItem(pokemon);
+
+pokemonRepository.loadList().then(function() {
+    pokemonRepository.getAll().forEach(function(pokemon){
+        pokemonRepository.addListItem(pokemon);
+  });
 });

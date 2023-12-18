@@ -55,7 +55,6 @@ h3 {
 }
 
 ul {
-  display: flex;
   list-style: none;
   justify-content: flex-start;
 }
