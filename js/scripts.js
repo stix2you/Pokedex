@@ -52,6 +52,7 @@ let pokemonRepository = (function () {
         );
         return specific[0];
     }
+
     function addListItem(pokemon) {
         let theList = document.querySelector('.pokemon-list');    // create a variable then assign it the ul element you just added to your “index.html” file
         let listItem = document.createElement('li');    // Create an li element (e.g., let listItem = document.createElement('li')).
@@ -62,13 +63,18 @@ let pokemonRepository = (function () {
         listItem.appendChild(button);   // append the button to the list item as its child.
         theList.appendChild(listItem);  // append the list item to the unordered list as its child.
 
+        addEventListenerToButton(button, pokemon);
+    }
+
+    
+    // Separate event listener function for pokemon button, pass button and pokemon, send info to showDetails function
+    function addEventListenerToButton(button, pokemon) {
         button.addEventListener('click', function () {
             showDetails(pokemon);
         });
     }
 
-    // Create a new function either above or below addListItem() and call it showDetails(). 
-    // The function should expect one parameter: pokemon. Inside the function, run a console.log() on the Pokémon object that’s passed as the parameter
+    // Function to display details of desired pokemon... for now, just send to console
     function showDetails(pokemon) {
         console.log(pokemon);  
     }
