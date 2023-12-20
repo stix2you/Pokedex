@@ -1,4 +1,4 @@
 # This is a Pokemon App to catalog Pokemon characters
 # To get running: Simply launch index.html
-# Project Dependencies:  none
-# Which API this project uses: none
+# Project Dependencies:  JS.ES6 ECMAScript 2018
+# Which API this project uses: PokeAPI https://pokeapi.co/api/v2/pokemon
