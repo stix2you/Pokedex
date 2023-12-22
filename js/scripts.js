@@ -33,7 +33,7 @@ let pokemonRepository = (function () {    // IIFE to wrap pokemon array
         button.setAttribute('type', 'button');
         button.setAttribute('data-toggle', 'modal');  //set attribue data-toggle to modal
         button.setAttribute('data-target', '#exampleModal');   // set attribute data-target to #detailModal which will bet the id for the modal in index 
-        button.classList.add('btn', 'btn-primary');  //add classes to button, stylize and responsive
+        button.classList.add('btn', 'btn-primary', 'button');  //add classes to button, stylize and responsive
         listItem.classList.add('list-group');      // Add a list-group-item class to the listItem element using the classList.add method  or jQuery using .addClass()
 
         button.addEventListener('click', function () {

@@ -13,7 +13,7 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-md navbar-light bg-light">  <!--IMPORTANT: breakpoint for hamburger menu is set with "navbar-expand-xx"-->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #01355a;">  <!--IMPORTANT: breakpoint for hamburger menu is set with "navbar-expand-xx"-->
         <!--note: fixed-top keeps the nav bar on the screen at all times-->
 
         <div class="navbar-brand" href="#">   <!--places brand logo on left edge of navbar-->
@@ -45,24 +45,20 @@
 
     </nav>
 
-    <h1>Pokédex</h1>
-    
-    
     <ul class="pokemon-list"></ul>
+    
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title empty</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    something
-                </div>
+                <div class="modal-body">empty</div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary">Save changes</button>
