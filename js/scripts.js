@@ -98,7 +98,6 @@ let pokemonRepository = (function () {    // IIFE to wrap pokemon array
         let nameElement = $("<h1>" + item.name + "</h1>");
         let imageElement = $('<img class="modal-img" style ="width:50%">');
         imageElement.attr("src", item.imageUrl);
-        // imageElement.src = pokemon.imageUrl;
         let heightElement = $("<p>" + "height: " + item.height + "</p>");
         let weightElement = $("<p>" + "weight: " + item.weight + "</p>");
         let typesElement = $("<p>" + "types: " + item.name + "</p>");
@@ -109,9 +108,6 @@ let pokemonRepository = (function () {    // IIFE to wrap pokemon array
         modalBody.append(weightElement);
         modalBody.append(typesElement);
 
-        // $("#exampleModal").click(function () {
-        //     $(button).toggle("modal");
-        // });
     }
 
     return {   // return functions to be used outside of IIFE
