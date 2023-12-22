@@ -34,57 +34,9 @@
     font-family: 'Young Serif', serif;
     font-weight: var(--font-weight-bold);
     font-size: var(--font-size-medium);
-    line-height: 1.5;
     color: var(--body-text-color);
   }
-  
-  #modal-container {
-    display: none;
-  }
-  
-  #modal-container.is-visible {  /* this is the box OUTSIDE the central main box with the message... the border if you like */
-    position: fixed;  /* to make it stay in place */
-    padding: 20px;  /* padding around box */
-    box-sizing: border-box;  /* to include padding in width and height - see BELOW */
-    top: 0;   /* in pixels from the TOP of screen, raise this to move top of modal-container down from top */
-    left: 0;    /* in pixels from LEFT side of screen, raise this to move left border of modal-container to right */
-    width: 100%;  /* in percentage of screen, lower this to move it left */
-    height: 100%;  /* in percentage of screen, lower this to move it up */
-    background: var(--modal-container-bkgd-color);  /* bkgd color outside the main box.. the secondary box or border color */
-    z-index: 999; /* to show it above other content */
-    overflow: auto; /* to allow scrolling if the screen is not high enough*/
-    display: grid;    /* this is used to center the modal */
-    text-align: center;    /* this is used to center the modal */
-  }
-  
-  .modal {   /* this is the main box with the message */
-    margin: auto;  /* to center the modal */
-    display: inline-block;  /* to make it wrap around the message */
-    box-sizing: border-box;   /* to include padding in width and height - see BELOW */
-    background: var(--modal-bkgd-color);  /* background color of the main box */
-    padding: 15px;
-    width: 100%;
-    max-width: 700px; /* maximum width of the main box, WILL NOT GROW BEYOND THIS*/
-    text-align: center;  /* the MAIN TEXT stays to center */
-  }
-  
-  .modal-close {  /* this is the X in the top right corner */
-    float: right;   /* to move it to the right */
-    -webkit-appearance: none;  /* to remove the default X */
-    border: 0;
-    background: none;
-    color: var(--modal-close-button-color);  /* color of the X or Text in this case */
-    text-decoration: underline;
-  }
-  
-  .modal h1 {
-    margin-top: 0;
-  }
-  
-  .modal p {
-    margin-bottom: 0;
-  }
-  
+   
   h1 {
     font-size: var(--font-size-very-large);
     font-weight: var(--font-weight-bold);
@@ -121,108 +73,12 @@
   a {
     color: var(--body-text-color);
   }
-  
-  
-  pokeListButton {
-    /* overwrites browser defaults and resets the border */
-    border: none;
+    
+  button {
     display: flex;
-    justify-content: center;
-  
-    /* takes the font from the outer container */
-    font-family: inherit;
-    font-size: var(--font-size-medium);
-  
-    /* styles the button */
-  
-    background-color: var(--button-background);
-    color: var(--button-text);
-    text-decoration: none;
-    padding: 10px;
-    border-radius: 3px;
-  
-    /* width of the border, type, color */
-    border-bottom: 2px solid var(--button-border-color);
-    transition-duration: 0.2s;
-    transition-property: opacity;
-  }
-  
-  pokeListButton:hover,
-  pokeListButton:focus,
-  .pokeListButton:hover,
-  .pokeListButton:focus {
-    /* lets the mouse appear as a hand when hovering over the button */
-    cursor: pointer;
-  
-    /* reduces the opacity of the button to 80% */
-    opacity: 0.8;
-  }
-  
-  @media all and (max-width: 500px) {
-      .pokemon-list {
-        grid-template-columns: 1fr;
-      }
-    }
-    
-    @media all and (min-width: 500px) and (max-width: 750px) {
-      .pokemon-list {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-    
-    @media all and (max-width: 750px) {
-      .pokemon-list {
-        grid-gap: 10px;
-      }
-    
-      .pokemon-list__item:last-child {
-        grid-column: auto / auto;
-        grid-row: auto / auto;
-      }
-    
-      h1 {
-        font-size: 22px;
-      }
-    
-      h2 {
-        font-size: 16px;
-      }
-    
-      p {
-        font-size: 16px;
-      }
-    
-      a {
-        font-size: 16px;
-      }
-    }
-    
-    @media all and (max-width: 900px) {
-      .pokemon-list {
-        display: block;
-        margin-left: 1px;
-      }
-    
-      .pokemon-list__item {
-        margin: 0 20px;
-        font-size: 22px;
-        font-weight: 400;
-        line-height: 2;
-        padding: 2px;
-      }
-    }
-    
-    @media all and (max-width: 1800px) {
-      .pokemon-list {
-        display: block;
-        margin-left: 1px;
-      }
-    
-      .pokemon-list__item {
-        margin: 0 20px;
-        font-size: 22px;
-        font-weight: 400;
-        line-height: 2;
-        padding: 2px;
-      }
-    }
+    height: 100px;
+    font-size: 1.0em;
+    font-weight: bold;
+    text: center;
+}
+
