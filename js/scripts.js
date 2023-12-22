@@ -44,6 +44,25 @@ let pokemonRepository = (function () {    // IIFE to wrap pokemon array
         });
     }
 
+    function showDetails(pokemon) {   // Function to display details of desired pokemon
+        loadDetails(pokemon).then(function () {
+            showModal(pokemon);
+        }); 
+    }
+
+    function loadDetails(item) {    // Function to load details of desired pokemon
+        let url = item.detailsUrl;
+        return fetch(url).then(function (response) {
+          return response.json();
+        }).then(function (details) {    // Now we add the details to the item
+          item.imageUrl = details.sprites.front_default,
+          item.height = details.height,
+          item.types = details.types
+        }).catch(function (e) {
+          console.error(e);
+        });
+    }
+
     function loadList() {    // Function to load pokemon list from API
         return fetch(apiUrl).then(function (response) {
             return response.json();
@@ -51,7 +70,6 @@ let pokemonRepository = (function () {    // IIFE to wrap pokemon array
             json.results.forEach(function (item) {
                 let pokemon = {
                 name: item.name,
-                height: item.height,
                 detailsUrl: item.url
                 };
             add(pokemon);
@@ -61,25 +79,6 @@ let pokemonRepository = (function () {    // IIFE to wrap pokemon array
         })
     }
     
-    function loadDetails(item) {    // Function to load details of desired pokemon
-        let url = item.detailsUrl;
-        return fetch(url).then(function (response) {
-          return response.json();
-        }).then(function (details) {    // Now we add the details to the item
-          item.imageUrl = details.sprites.front_default;
-          item.height = details.height;
-          item.types = details.types;
-        }).catch(function (e) {
-          console.error(e);
-        });
-    }
-
-    function showDetails(pokemon) {   // Function to display details of desired pokemon
-        loadDetails(pokemon).then(function () {
-            showModal(pokemon);
-        }); 
-    }
-
     function showModal(pokemon) {  // Function to display modal with pokemon details
         let modalContainer = document.querySelector('#modal-container');   
         modalContainer.innerHTML = '';
