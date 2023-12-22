@@ -33,8 +33,12 @@ let pokemonRepository = (function () {    // IIFE to wrap pokemon array
         button.setAttribute('type', 'button');
         button.setAttribute('data-toggle', 'modal');  //set attribue data-toggle to modal
         button.setAttribute('data-target', '#exampleModal');   // set attribute data-target to #detailModal which will bet the id for the modal in index 
-        button.classList.add('btn', 'btn-primary', 'btn-danger');  //add classes to button, stylize and responsive
+        button.classList.add('btn', 'btn-primary');  //add classes to button, stylize and responsive
         listItem.classList.add('list-group');      // Add a list-group-item class to the listItem element using the classList.add method  or jQuery using .addClass()
+
+        button.addEventListener('click', function () {
+            showDetails(pokemon);
+        });
 
         listItem.appendChild(button);   // append the button to the list item as its child.
         theList.appendChild(listItem);  // append the list item to the unordered list as its child.
@@ -47,38 +51,45 @@ let pokemonRepository = (function () {    // IIFE to wrap pokemon array
         }); 
     }
 
-    function loadDetails(item) {    // Function to load details of desired pokemon
+    function loadDetails(item) {
         let url = item.detailsUrl;
-        return fetch(url).then(function (response) {
-          return response.json();
-        }).then(function (details) {    // Now we add the details to the item
-          item.imageUrl = details.sprites.front_default,
-          item.height = details.height,
-          item.types = details.types
-        }).catch(function (e) {
-          console.error(e);
-        });
+        return fetch(url)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (details) {
+                item.imageUrl = details.sprites.front_default;
+                item.height = details.height;
+                item.weight = details.weight;  // Add weight property
+                item.types = details.types;
+            })
+            .catch(function (e) {
+                console.error(e);
+            });
     }
 
     function loadList() {    // Function to load pokemon list from API
-        return fetch(apiUrl).then(function (response) {
-            return response.json();
-        }).then(function (json) {
-            json.results.forEach(function (item) {
-                let pokemon = {
-                name: item.name,
-                detailsUrl: item.url
-                };
-            add(pokemon);
+        return fetch(apiUrl)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (json) {
+                json.results.forEach(function (item) {
+                    let pokemon = {
+                    name: item.name,
+                    detailsUrl: item.url
+                    };
+                add(pokemon);
+                });
+            })
+            .catch(function (e) {
+                console.error(e);
             });
-        }).catch(function (e) {
-            console.error(e);
-        })
     }
     
     function showModal(item) {  // Function to display modal with pokemon details
         let modalBody = $(".modal-body");
-        let modalTitle = $(".modal-tital");
+        let modalTitle = $(".modal-title");
         let modalHeader = $(".modal-header");
 
         modalBody.empty();
@@ -87,15 +98,20 @@ let pokemonRepository = (function () {    // IIFE to wrap pokemon array
         let nameElement = $("<h1>" + item.name + "</h1>");
         let imageElement = $('<img class="modal-img" style ="width:50%">');
         imageElement.attr("src", item.imageUrl);
-        let heightElement = $("<p>" + "height" + item.height + "</p>");
-        let weightElement = $("<p>" + "weight" + item.weight + "</p>");
-        let typesElement = $("<p>" + "types" + item.types + "</p>");
+        // imageElement.src = pokemon.imageUrl;
+        let heightElement = $("<p>" + "height: " + item.height + "</p>");
+        let weightElement = $("<p>" + "weight: " + item.weight + "</p>");
+        let typesElement = $("<p>" + "types: " + item.name + "</p>");
 
         modalTitle.append(nameElement);
         modalBody.append(imageElement);
         modalBody.append(heightElement);
         modalBody.append(weightElement);
         modalBody.append(typesElement);
+
+        // $("#exampleModal").click(function () {
+        //     $(button).toggle("modal");
+        // });
     }
 
     return {   // return functions to be used outside of IIFE
