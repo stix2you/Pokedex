@@ -1,7 +1,7 @@
 let pokemonRepository = (function () {    // IIFE to wrap pokemon array
     let pokemonList = [];     // Create an empty array in which to store the Pokémon objects (e.g., let pokemonList = []).
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';    // Create a variable to store the URL of the Pokémon API (e.g., let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150').
-      
+    
     function add(pokemon) {    // Function to add pokemon to list
         if (typeof pokemon === "object"  &&
             "name" in pokemon  &&
@@ -25,16 +25,16 @@ let pokemonRepository = (function () {    // IIFE to wrap pokemon array
         return specific[0]; 
     }
 
-    function addListItem(pokemon) {    // Function to add pokemon to DOM as a button
-        let theList = document.querySelector('.pokemon-list');    // create a variable then assign it the ul element you just added to your “index.html” file
-        let listItem = document.createElement('li');    // Create an li element (e.g., let listItem = document.createElement('li')).
-        let button = document.createElement('button');  // Create a button element (e.g., let button = document.createElement('button'))
-        button.innerText = pokemon.name;      // set its innerText to be the Pokémon's name (remember that forEach returns a Pokémon in each iteration).
+    function addListItem(pokemon) {    
+        let theList = document.querySelector('.pokemon-list');    
+        let listItem = document.createElement('div');   
+        let button = document.createElement('button'); 
+        button.innerText = pokemon.name;    
         button.setAttribute('type', 'button');
-        button.setAttribute('data-toggle', 'modal');  //set attribue data-toggle to modal
-        button.setAttribute('data-target', '#exampleModal');   // set attribute data-target to #detailModal which will bet the id for the modal in index 
-        button.classList.add('btn', 'btn-primary', 'button');  //add classes to button, stylize and responsive
-        listItem.classList.add('list-group');      // Add a list-group-item class to the listItem element using the classList.add method  or jQuery using .addClass()
+        button.setAttribute('data-toggle', 'modal'); 
+        button.setAttribute('data-target', '#exampleModal'); 
+        button.classList.add('btn', 'btn-primary', 'button', 'w-100'); 
+        listItem.classList.add('col-md-3'); // Adjust column size and margin as needed
 
         button.addEventListener('click', function () {
             showDetails(pokemon);
@@ -100,7 +100,10 @@ let pokemonRepository = (function () {    // IIFE to wrap pokemon array
         imageElement.attr("src", item.imageUrl);
         let heightElement = $("<p>" + "height: " + item.height + "</p>");
         let weightElement = $("<p>" + "weight: " + item.weight + "</p>");
-        let typesElement = $("<p>" + "types: " + item.name + "</p>");
+        let typesElement = $("<p>Types: </p>");
+        item.types.forEach(function (type) {
+            typesElement.append(type.type.name + ' ');
+        });
 
         modalTitle.append(nameElement);
         modalBody.append(imageElement);
