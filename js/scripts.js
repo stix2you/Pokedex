@@ -51,17 +51,18 @@ let pokemonRepository = (function () {    // IIFE to wrap pokemon array
         }); 
     }
 
-    function loadDetails(item) {
-        let url = item.detailsUrl;
+    function loadDetails(pokemon) {   // HTTP fetch request to URL specified by detailsUrl var, assigns attributes of pokemon to variables 
+        let url = pokemon.detailsUrl;
         return fetch(url)
             .then(function (response) {
                 return response.json();
             })
             .then(function (details) {
-                item.imageUrl = details.sprites.front_default;
-                item.height = details.height;
-                item.weight = details.weight;  // Add weight property
-                item.types = details.types;
+                pokemon.imageFront = details.sprites.front_default;
+                pokemon.imageBack = details.sprites.back_default;
+                pokemon.height = details.height;
+                pokemon.weight = details.weight; 
+                pokemon.types = details.types;
             })
             .catch(function (e) {
                 console.error(e);
@@ -96,8 +97,10 @@ let pokemonRepository = (function () {    // IIFE to wrap pokemon array
         modalTitle.empty();
               
         let nameElement = $("<h1>" + item.name + "</h1>");
-        let imageElement = $('<img class="modal-img" style ="width:50%">');
-        imageElement.attr("src", item.imageUrl);
+        let imageFrontElement = $('<img class="modal-img" style ="width:50%">');
+        imageFrontElement.attr("src", item.imageFront);
+        let imageBackElement = $('<img class="modal-img" style ="width:50%">');
+        imageBackElement.attr("src", item.imageBack);
         let heightElement = $("<p>" + "height: " + item.height + "</p>");
         let weightElement = $("<p>" + "weight: " + item.weight + "</p>");
         let typesElement = $("<p>Types: </p>");
@@ -106,7 +109,8 @@ let pokemonRepository = (function () {    // IIFE to wrap pokemon array
         });
 
         modalTitle.append(nameElement);
-        modalBody.append(imageElement);
+        modalBody.append(imageFrontElement);
+        modalBody.append(imageBackElement);
         modalBody.append(heightElement);
         modalBody.append(weightElement);
         modalBody.append(typesElement);
