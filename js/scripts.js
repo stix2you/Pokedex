@@ -54,7 +54,7 @@ let pokemonRepository = (function () {    // IIFE to wrap pokemon array
                 showModal(pokemon);
             })
             .catch(function (e) {           // logs a counsel error if the FETCH or PROSESSING OF DETAILS doesn't work
-                console.error("showDetails function error");
+                console.error(e);
             });
     }
 
@@ -72,7 +72,7 @@ let pokemonRepository = (function () {    // IIFE to wrap pokemon array
                 pokemon.types = details.types;
             })
             .catch(function (e) {           // logs a counsel error if the FETCH or PROSESSING OF DETAILS doesn't work
-                console.error("loadDetails function error");
+                console.error(e);
             });
     }
 

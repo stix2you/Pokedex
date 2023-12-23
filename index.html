@@ -13,29 +13,25 @@
 </head>
 
 <body>
+    
     <header class="container">
 
-        <!-- COLLAPSING NAV BAR -->
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-            <!--IMPORTANT: breakpoint for hamburger menu is set with "navbar-expand-xx"-->
-            <!--note: fixed-top keeps the nav bar on the screen at all times-->
-
-            <div class="navbar-brand" href="#"> <!--places brand logo on left edge of navbar-->
-                <img src="images/pokemon-logo-200.jpg" width="120" height="70" class="d-inline-block align-top"
-                    alt="Pokemon Logo">
-                <h1 class="d-inline-block ml-5 mr-3 mt-2">Pokédex</h1>  <!--adjust margins to position text in navbar-->
+        <!-- Navigation Bar -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top" role="navigation" aria-label="Main Menu">
+            <div class="navbar-brand">
+                <a href="#" aria-label="Home">
+                    <img src="images/pokemon-logo-200.jpg" width="120" height="70" class="d-inline-block align-top"
+                        alt="Pokemon Logo">
+                    <h1 class="d-inline-block ml-5 mr-3 mt-2">Pokédex</h1>
+                </a>
             </div>
-
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarNav">
-                <!--"collapse" and "navbar-collapse" work with the hamburger menu button -->
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <!--active class can switch to whichever is active, remove from this element, add to the selected element-->
                         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
@@ -49,24 +45,24 @@
                     </li>
                 </ul>
             </div>
-
         </nav>
 
         <!-- Pokemon List -->
-        <div class="pokemon-list row" style="padding-top: 100px"></div>   <!--padding to keep nav bar from obscuring -->
+        <div class="pokemon-list row" style="padding-top: 100px" role="navigation" aria-label="Pokemon Menu"></div>
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-modal="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title empty</h5>
+                        <h5 class="modal-title" id="modalTitle">Modal Title</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body text-center">empty</div>
+                    <div class="modal-body">
+                        <p id="modalDescription" class="text-center">Modal content goes here.</p>
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary">Save changes</button>
