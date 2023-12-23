@@ -36,8 +36,8 @@ let pokemonRepository = (function () {    // IIFE to wrap pokemon array
         button.setAttribute('data-toggle', 'modal');            // data-toggle and data-target attribues set up sort of an event listener to 
         button.setAttribute('data-target', '#exampleModal');    // open a modal when a button is pressed, directs the modal class to be "visible" in the html exampleModal ID
         
-        button.classList.add('btn', 'btn-primary', 'button', 'w-100');  // Add classes to the button for styling
-        listItem.classList.add('col-md-3'); // Can adjust column size and margin of buttons as needed HERE
+        button.classList.add('btn', 'btn-primary', 'button', 'w-100', 'my-3');  // ADJUST BUTTON STYLING
+        listItem.classList.add('col-md-3'); // ADJUST LIST STYLING HERE
 
         button.addEventListener('click', function () {    // fires the showDetails function, this actually displays the information in the modal
             showDetails(pokemon);

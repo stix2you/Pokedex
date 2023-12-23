@@ -1,8 +1,4 @@
-
-.pokemon-list {
-    padding-top: 100px;  /* avoid navbar covering content */
-} 
-
+/* Retained CSS for color styling to easily change colors if needed, in one place  */
 
 .navbar {
     background-color: #015a23;
@@ -10,7 +6,6 @@
 }
 
 .button {
-    margin: 20px 0px;   /* Add some margin for spacing between buttons */
     background-color: rgb(9, 55, 116);
 }
 
