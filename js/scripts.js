@@ -106,13 +106,13 @@ let pokemonRepository = (function () {    // IIFE to wrap pokemon array
         let nameElement = $("<h1>" + item.name + "</h1>");      // Define the elements first... 
         let imageFrontElement = $('<img class="modal-img" style ="width:50%">');
         imageFrontElement.attr("src", item.imageFront);
-        let imageBackElement = $('<img class="modal-img" style ="width:50%">');
+        let imageBackElement = $("<img class='modal-img' style ='width:50%'>");
         imageBackElement.attr("src", item.imageBack);
         let heightElement = $("<p>" + "height: " + item.height + "</p>");
         let weightElement = $("<p>" + "weight: " + item.weight + "</p>");
         let typesElement = $("<p>Types: </p>");
         item.types.forEach(function (type) {
-            typesElement.append(type.type.name + ' ');
+            typesElement.append(type.type.name + " ");
         });
 
         modalTitle.append(nameElement);         // ... then add the elements to the DOM
