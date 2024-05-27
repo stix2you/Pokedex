@@ -5,9 +5,13 @@ Pokédex is a catalog of Pokémon characters.  It was built using HTML, CSS, and
 
 Git Repo for this client-side Angular project here: https://pokeapi.co/
 
-## PROJECT SETUP FOR DEV ENVIRONMENT:
+## Project Setup for Development Environment:
 
 Download repo from above URL and install in a directory. 
+
+-OR-
+
+git clone https://github.com/stix2you/Pokedex
 
 ## Dependencies
 Project utilizes JS.ES6 ECMAScript 2018, jQuery, Bootstrap.
