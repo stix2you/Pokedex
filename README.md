@@ -17,3 +17,4 @@ git clone https://github.com/stix2you/Pokedex
 Project utilizes JS.ES6 ECMAScript 2018, jQuery, Bootstrap.
 
 Bootstrap and jQuery are both included via Content Delivery Network links within index.html
+So there is no need to install them. 
